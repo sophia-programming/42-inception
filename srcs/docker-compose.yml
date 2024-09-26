@@ -1,7 +1,8 @@
 services:
   mariadb:
+    build:
+      context: ./requirements/mariadb
     image: mariadb
-    context: ./requirements/mariadb
     container_name: mariadb
     networks:
       - wordpress-network
@@ -9,13 +10,35 @@ services:
       - db-data:/var/lib/mysql
     restart: always
 
-  networks:
-    wordpress-network:
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+    image: wordpress
+    container_name: wordpress
+    networks:
+      - wordpress-network
+      - nginx-network
+    volumes:
+      - wordpress_files:/var/www/html
+      - ./requirements/wordpress/www.conf:/etc/php/7.4/fpm/pool.d/www.conf
+    depends_on:
+      - mariadb
+    restart: always
 
-  volumes:
-    db-data:
-      driver: local
+networks:
+  wordpress-network:
+  nginx-network:
+
+volumes:
+  wordpress_files:
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/haru/data/wordpress_files
+      o: bind
+  db-data:
+    driver: local
+    driver_opts:
       type: none
       device: /Users/haru/data/db-data
       o: bind
-
