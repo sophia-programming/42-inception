@@ -8,6 +8,8 @@ services:
       - wordpress-network
     volumes:
       - db-data:/var/lib/mysql
+    env_file:
+      - ./.env
     restart: always
 
   wordpress:
@@ -21,8 +23,25 @@ services:
     volumes:
       - wordpress_files:/var/www/html
       - ./requirements/wordpress/www.conf:/etc/php/7.4/fpm/pool.d/www.conf
+    env_file:
+      - ./.env
     depends_on:
       - mariadb
+    restart: always
+
+  nginx:
+    build:
+      context: ./requirements/nginx
+    image: nginx
+    container_name: nginx
+    networks:
+      - nginx-network
+    volumes:
+      - wordpress_files:/var/www/html
+      - ./requirements/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./requirements/nginx/default:/etc/nginx/sites-available/default
+    depends_on:
+      - wordpress
     restart: always
 
 networks:
