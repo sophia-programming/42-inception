@@ -23,5 +23,7 @@ RUN     mkdir -p /var/www/html \
 COPY	./init-wordpress.sh /usr/local/bin/
 RUN     chmod +x /usr/local/bin/init-wordpress.sh
 
+EXPOSE  9000
+
 ENTRYPOINT  [ "init-wordpress.sh" ]
 CMD     ["php-fpm7.4", "-F"]
