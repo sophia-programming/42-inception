@@ -11,7 +11,7 @@ down:
 # ボリュームを含め,全て削除
 clean:
 	docker compose -f srcs/docker-compose.yml down --volumes
-	sudo rm -rf /home/haru/data
+	sudo rm -rf /Users/haru/data
 
 # コンテナのログを表示
 logs:
