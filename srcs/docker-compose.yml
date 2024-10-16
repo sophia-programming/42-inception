@@ -55,11 +55,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/haru/data/wordpress_files
+      device: /home/oaoba/data/wordpress_files
       o: bind
   db-data:
     driver: local
     driver_opts:
       type: none
-      device: /Users/haru/data/db-data
+      device: /home/oaoba/data/db-data
       o: bind
