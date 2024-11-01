@@ -1,8 +1,6 @@
 FROM	debian:bullseye
 
-RUN	apt-get update
-
-RUN apt install -y mariadb-server
+RUN	apt-get update && apt install -y mariadb-server
 
 COPY init-db.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/init-db.sh
