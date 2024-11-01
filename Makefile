@@ -1,7 +1,7 @@
 # ビルドと起動
 up:
-	mkdir -p /Users/haru/data/wordpress_files
-	mkdir -p /Users/haru/data/db-data
+	mkdir -p /home/oaoba/data/wordpress_files
+	mkdir -p /home/oaoba/data/db-data
 	docker compose -f srcs/docker-compose.yml up --build -d
 
 # 停止とコンテナの削除
@@ -10,14 +10,17 @@ down:
 
 # ボリュームを含め,全て削除
 clean:
-	docker compose -f srcs/docker-compose.yml down --volumes
-	sudo rm -rf /Users/haru/data
+	docker compose -f srcs/docker-compose.yml down --rmi all -v 
+
+fclean:
+	docker compose -f srcs/docker-compose.yml down --rmi all -v \
+	&& sudo rm -rf /home/oaoba/data/db-data/* /home/oaoba/data/wordpress_files*
 
 # コンテナのログを表示
 logs:
 	docker compose -f srcs/docker-compose.yml logs
 
-# 実行中のコンテナーのみ表示
+# 実行中のコンテナのみ表示
 ps:
 	docker compose -f srcs/docker-compose.yml ps
 
