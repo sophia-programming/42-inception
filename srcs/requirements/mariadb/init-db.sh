@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# 「mariadb &」でbackgroundでコマンド実行
 start_mariadb() {
 	mariadbd &
 	MARIADB_PID=$!
