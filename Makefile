@@ -2,7 +2,7 @@
 up:
 	mkdir -p /home/oaoba/data/wordpress_files
 	mkdir -p /home/oaoba/data/db-data
-	docker-compose -f srcs/docker-compose.yml up --build -d
+	sudo docker-compose -f srcs/docker-compose.yml up --build -d
 
 # 停止とコンテナの削除
 down:
