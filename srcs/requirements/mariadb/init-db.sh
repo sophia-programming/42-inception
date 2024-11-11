@@ -23,10 +23,10 @@ if ! mysql -uroot -e ";" ; then
 fi
 
 if ! mysql -uroot -p${DB_PASSWORD} -e "USE $DB_NAME;" ; then
-	mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
-	mysql -u root -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';"
-	mysql -u root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';"
-	mysql -u root -e "FLUSH PRIVILEGES;"
+	mysql -u root -p${DB_PASSWORD} -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+	mysql -u root -p${DB_PASSWORD} -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';"
+	mysql -u root -p${DB_PASSWORD} -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';"
+	mysql -u root -p${DB_PASSWORD} -e "FLUSH PRIVILEGES;"
 fi
 stop_mariadb
 

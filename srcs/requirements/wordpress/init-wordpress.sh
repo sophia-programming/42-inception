@@ -4,7 +4,7 @@
 wp core download --path=/var/www/html/ --allow-root
 
 # WordPressのインストール確認
-if ! wp core is-installed --allow-root ; then
+if ! wp core is-installed --path=/var/www/html --allow-root ; then
 	cd /var/www/html
 
 # wp-config.php ファイルを作成し、データベース接続情報を設定
